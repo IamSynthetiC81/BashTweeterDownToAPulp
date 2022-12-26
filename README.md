@@ -1,0 +1,2 @@
+# BashTweeterDownToAPulp
+Task 2 
