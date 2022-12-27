@@ -1,6 +1,16 @@
 # BashTweeterDownToAPulp
 
-- Θέμα 1 - 'None'       -> Linux Commands (10% του βαθμού της Εργασίας 2)
+<p align="center">
+ <b>What is dead may never die !!!</b>
+</p>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/66788358/209719520-fe172908-9027-459e-9c61-8e394abce28e.jpg" />
+</p>
+
+---
+
+- Θέμα 1 - 'Νίκος'       -> Linux Commands (10% του βαθμού της Εργασίας 2)
 - Θέμα 2 - Marios       -> Twitter Viewer & Editor σε Bash Script (25% του βαθμού της Εργασίας 2)
 - Θέμα 3 - 'None'       -> Sentiment Analyser σε Bash Script (20% του βαθμού της Εργασίας 2)
 - Θέμα 4 - 'None'       -> Python Process Programming ‐ Zig Zag Process Generator (25% του βαθμού της Εργασίας 2)
