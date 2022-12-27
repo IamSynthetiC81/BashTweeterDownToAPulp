@@ -20,14 +20,18 @@ function readTweet(){
 		return
 	fi
 	if [[ $CommandParameter -lt 0 ]] ; then
-		echo -e "\tID can be negative"
+		echo -e "\tID can not be negative"
 		return
 	fi
 
-	echo -e "\n${tweets[$CommandParameter]}"
+	echo -e "\t${tweets[$CommandParameter]}"
 }
 
 function updateTweet(){
+	if [[ -z "$CommandParameter" ]] ; then
+		echo -e "\tParameter was not specified"
+		return
+	fi
 	if [[ $CommandParameter =~ '^[0-9]+$' ]] ; then
 		echo -e "\tinvalid parameter"
 		return
@@ -41,11 +45,11 @@ function updateTweet(){
 	IFS=$'\n'
 	read newTweet
 	
-	echo -e Original tweet is : ${tweets[$CommandParameter]} \n
+	#echo -e Original tweet is : ${tweets[$CommandParameter]} \n
 
-	tweets[$CommandParameter]=$newTweet
+	tweets[$CommandParameter]=""$newTweet""
 
-	echo -e New tweet is : ${tweets[$CommandParameter]} \n
+	#echo -e New tweet is : ${tweets[$CommandParameter]}\n
 }
 
 function deleteCurrentID(){
@@ -96,7 +100,10 @@ function SaveToFile(){
 	printf "%s\n" "${tweets[@]}" > $SavePath 
 }
 
-
+function printHelp(){
+	filepath="Files/.conf/help.txt"
+	while read line; do echo $line; done < $filepath
+}
 
 CurrentID=0
 CommandParameter=-1
@@ -104,12 +111,14 @@ CommandParameter=-1
 Path=$1
 if [[ ! -e $Path ]];
 then
-	echo -e "\tWrong path looser"
-	exit 0
+	echo -e "\tNo file path specified\n\tUsing default location"
+	Path="Files/tweetsmall.txt"
 fi
 
 readarray -t tweets < $Path 
 lineCount=$(/usr/bin/wc -l < $Path)
+
+echo -e "Welcome to the US degeneracy pool\n\tPress -h for help"
 
 while true
 do
@@ -118,10 +127,10 @@ do
 	read UserCommand CommandParameter
 
 	case $UserCommand in
-	e)	createTweet ;;
-	r)	readTweet ;;
-	u)	updateTweet ;;
-	d)	deleteCurrentID ;;
+	[eE]*)	createTweet ;;
+	[rR]*)	readTweet ;;
+	[uU]*)	updateTweet ;;
+	[dD]*)	deleteCurrentID ;;
 	$)	# Print last tweet
 		CurrentID=$lineCount-1
 		CommandParameter=$lineCount-1
@@ -143,15 +152,13 @@ do
 		fi	;;
 	=) 	# Print current tweet
 			echo ${tweets[$CurrentID]} ;;
-	q)	exit 0	;;
-	w)	# Save to file
+	[qQ]*)	exit 0		;;
+	[wW]*)	# Save to file
 		SaveToFile	;;
-	x)	# Save and exit
+	[xX]*)	# Save and exit
 		SaveToFile
-		exit 0	;;
-	h)	# Help
-		# TODO Read help.txt and print it
-		echo Not yet implemented	;;
+		exit 0		;;
+	[hH]*)	printHelp	;;
 	*)	echo -e '\t' Incorect command;;
 	esac
 done
