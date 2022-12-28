@@ -1,0 +1,10 @@
+positive
+negative
+neutral
+positive positive positive
+positive positive negative
+positive negative negative
+negative negative negative
+neutral positive negative
+positive neutral negative
+positive negative neutral
