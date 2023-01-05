@@ -1,6 +1,6 @@
 Welcome to the Bash Tweeter Terminal.
 
-To start, call the terminal with './Task2.sh <path/tweets.txt>. If no 
+To start, call the terminal with './TweeterViewerEditor.sh <path/tweets.txt>. If no 
 path is specified, then the default location of /Files/tweetsmall.txt 
 is used.
 
